@@ -39,6 +39,12 @@ ChemLab permitirá registrar los materiales y equipos de un laboratorio de quím
 
 La aplicación facilitará el control de los recursos disponibles y permitirá conservar la información en un archivo JSON, evitando que los datos se pierdan al cerrar el programa.
 
+## Vista de la aplicación
+
+<p align="center">
+  <img src="docs/interfaz-chemlab.png" alt="Interfaz principal de ChemLab" width="650">
+</p>
+
 ## Adaptación del modelo y reglas
 
 ChemLab adapta el sistema de registros proporcionado por el docente para gestionar materiales y equipos de un laboratorio de química.
