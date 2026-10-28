@@ -4,6 +4,7 @@ package fachada;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import modelo.Registro;
 import persistencia.PersistenciaRegistros;
 
@@ -101,7 +102,7 @@ public class FachadaRegistros {
             boolean coincideIdentificador =
                     String.valueOf(registro.getIdentificador()).equals(texto);
 
-            if (coincideNombre || coincideIdentificador) {
+            if (texto.matches("\\d+") ? coincideIdentificador : coincideNombre) {
                 resultados.add(registro);
             }
         }
