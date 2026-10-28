@@ -23,9 +23,7 @@ La interfaz incorpora controles de validación, selección de registros desde un
 La información se almacena en un archivo JSON.
 
 
-Los apartados marcados como **Pendiente** deben completarse con nuestro
-desarrollo real antes de entregar. La [consigna del laboratorio](docs/letra.md)
-detalla los requisitos.
+La [consigna del laboratorio](docs/letra.md) detalla los requisitos del trabajo.
 
 ## Problema y destinatarios
 
@@ -35,9 +33,9 @@ ChemLab busca facilitar esta tarea mediante una aplicación destinada a las pers
 
 ## Utilidad de la solución
 
-ChemLab permitirá registrar los materiales y equipos de un laboratorio de química, consultar sus características, modificar sus datos, eliminarlos y buscarlos de manera sencilla.
+ChemLab permite registrar los materiales y equipos de un laboratorio de química, consultar sus características, modificar sus datos, eliminarlos y buscarlos de manera sencilla.
 
-La aplicación facilitará el control de los recursos disponibles y permitirá conservar la información en un archivo JSON, evitando que los datos se pierdan al cerrar el programa.
+La aplicación facilita el control de los recursos disponibles y permite guardar la información en un archivo JSON mediante el botón «Guardar». Los cambios no se guardan automáticamente al cerrar el programa.
 
 ## Vista de la aplicación
 
@@ -75,11 +73,11 @@ Para garantizar la coherencia de los registros, se establecen las siguientes con
 
 La regla específica del laboratorio establece que, cuando la cantidad de un material llega a cero, su estado debe cambiar a inactivo.
 
-Estas reglas forman parte del diseño de ChemLab. Su funcionamiento se comprobará en la versión actualizada de la aplicación.
+Estas reglas forman parte del diseño de ChemLab. Las validaciones comprobadas se detallan en la sección «Pruebas de nuestro desarrollo».
 
 ## Componentes gráficos
 
-ChemLab utilizará ocho tipos diferentes de componentes gráficos de Java Swing, cada uno con una función específica dentro de la aplicación.
+La interfaz de ChemLab utiliza ocho tipos de componentes gráficos de Java Swing, cada uno con una función específica.
 
 ### Componentes del proyecto original
 
@@ -108,14 +106,14 @@ Los tres componentes adicionales están incorporados a la interfaz de ChemLab.
 | Paquete o carpeta | Responsabilidad |
 | --- | --- |
 | [app](src/main/java/app) | Iniciar la aplicación y conectar los objetos. |
-| [modelo](src/main/java/modelo) | Representar los registros y, al completar el proyecto, sus reglas. |
+| [modelo](src/main/java/modelo) | Representar los materiales y aplicar sus reglas básicas. |
 | [vista](src/main/java/vista) | Mostrar la interfaz Swing y los mensajes. |
 | [controlador](src/main/java/controlador) | Recibir eventos y coordinar las acciones mediante la fachada. |
 | [fachada](src/main/java/fachada) | Ofrecer operaciones y coordinar el modelo con la persistencia. |
 | [persistencia](src/main/java/persistencia) | Leer y escribir JSON, sin depender de Swing. |
 | [datos](datos) | Contener el archivo JSON; no es un paquete Java. |
 
-El recorrido que ya funciona es la carga inicial:
+Durante la carga inicial de ChemLab se sigue este recorrido:
 [Aplicacion](src/main/java/app/Aplicacion.java) conecta los objetos;
 el controlador solicita la carga a la fachada; la fachada utiliza la
 persistencia para leer el archivo; y el controlador entrega los registros a la
@@ -214,8 +212,7 @@ La ruta es relativa al directorio desde el cual se inicia la aplicación.
 Si el archivo no existe, la aplicación inicia con una lista vacía. Si es
 inválido o ilegible, muestra un error y mantiene la ventana abierta sin
 reemplazarlo. La fachada bloquea el guardado cuando la carga no fue correcta.
-Los errores de escritura se propagan al controlador; falta integrar el guardado
-y sus mensajes con las operaciones del equipo.
+
 
 
 El botón "Guardar" permite almacenar los registros en el archivo JSON. Al cerrar la ventana, los cambios no se guardan automáticamente.
@@ -250,7 +247,9 @@ verificar como parte de esta actualización.
 
 ### Pruebas de nuestro desarrollo
 
-**Pruebas realizadas:** se comprobaron manualmente las principales funciones de ChemLab. Los resultados obtenidos se detallan en la siguiente tabla.
+La versión actual de ChemLab también fue ejecutada y comprobada en macOS, utilizando Visual Studio Code y Java Swing.
+
+*Pruebas realizadas:** se comprobaron manualmente las principales funciones de ChemLab. Los resultados obtenidos se detallan en la siguiente tabla.
 
 | Acción | Resultado esperado | Resultado obtenido |
 | --- | --- | --- |
@@ -265,12 +264,12 @@ verificar como parte de esta actualización.
 | Crear y modificar datos, guardar, cerrar y volver a abrir. | Recuperar los cambios desde el JSON. | Comprobado: se registró y modificó un material, se guardaron los cambios y se recuperaron correctamente al reiniciar ChemLab. |
 | Iniciar sin JSON y con JSON inválido. | Manejar correctamente la ausencia de datos y los errores de lectura. | Comprobado: sin JSON, ChemLab inicia con la tabla vacía; con JSON inválido, muestra un mensaje de error. Al restaurar el archivo original, recupera los cuatro materiales. |
 
-Las principales funciones de ChemLab fueron implementadas y comprobadas mediante pruebas manuales. Queda pendiente la revisión final de la documentación y la preparación del video explicativo.
+Las principales funciones de ChemLab fueron implementadas y comprobadas mediante pruebas manuales. Queda pendiente preparar y publicar el video explicativo.
 
 ## Procedencia del código y recursos utilizados
 
 - **Base docente:** prototipo inicial en Java con arquitectura MVC, fachada, modelo de registros, interfaz Swing, carga de ejemplos, persistencia JSON y configuración Maven Wrapper. El prototipo incluía funcionalidades pendientes que posteriormente desarrollamos.
-- **Trabajo de nuestro equipo:** incorporación de JSpinner para gestionar cantidades, JList para filtrar materiales por categoría, mejoras en la interfaz gráfica y corrección de la búsqueda por identificador y nombre.
+- **Trabajo de nuestro equipo:** adaptación de la persistencia JSON, puesta en funcionamiento de los botones de gestión, incorporación de JSpinner para gestionar cantidades, JList para filtrar materiales por categoría, mejoras de la interfaz gráfica y corrección de la búsqueda por identificador y nombre.
 - **Bibliotecas:** Gson 2.13.2 para leer y escribir JSON; Swing, incluido en Java,
   para la interfaz.
 - **Herramientas de IA:** se utilizó ChatGPT como apoyo para revisar código Java, resolver errores, mejorar la interfaz gráfica y organizar la documentación. Las funcionalidades fueron comprobadas manualmente.
@@ -279,11 +278,8 @@ Las principales funciones de ChemLab fueron implementadas y comprobadas mediante
 
 | Integrante | Aportes realizados |
 | --- | --- |
-| Pendiente: primer integrante. | Pendiente de registrar aportes concretos. |
+| Nicolás Monfort | Adaptación de la persistencia JSON y puesta en funcionamiento de los botones de la aplicación.|
 | Jorge Álvarez | Incorporación de JSpinner para gestionar cantidades, JList para filtrar materiales por categoría, mejoras de la interfaz gráfica y corrección de la búsqueda por identificador y nombre.|
-
-Agregar una tercera fila solamente si corresponde. Todos los integrantes deben
-conocer la solución completa y participar en el video.
 
 ## Video explicativo
 
