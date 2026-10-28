@@ -115,8 +115,9 @@ el controlador solicita la carga a la fachada; la fachada utiliza la
 persistencia para leer el archivo; y el controlador entrega los registros a la
 vista para mostrarlos en la tabla. La vista no lee ni escribe archivos.
 
-**Pendiente de documentar:** el recorrido completo de una operación de gestión
-implementada por nuestro equipo.
+Cuando el usuario pulsa Registrar, el controlador recibe la operación y la comunica a la fachada. Esta valida los datos y agrega el material al listado. La interfaz actualiza la tabla para mostrar el nuevo registro.
+
+Al pulsar Guardar, la fachada utiliza la capa de persistencia para almacenar los registros en el archivo datos/registros.json. Así, la información puede recuperarse al volver a ejecutar ChemLab.
 
 ## Instrucciones de ejecución
 
@@ -141,12 +142,9 @@ Comprobar que `java -version`, `javac -version` y `.\mvnw.cmd -version`
 
 ### Descargar el proyecto
 
-**Pendiente:** reemplazar `USUARIO` y `REPOSITORIO` por los datos del repositorio
-del equipo antes de entregar.
-
 ```text
-git clone https://github.com/USUARIO/REPOSITORIO.git
-cd REPOSITORIO
+git clone https://github.com/septimodecaballeria/prog2-lab2026-monfort_alvarez.git
+cd prog2-lab2026-monfort_alvarez
 ```
 
 El nombre del repositorio debe seguir el formato indicado en la consigna:
@@ -246,45 +244,37 @@ verificar como parte de esta actualización.
 
 ### Pruebas de nuestro desarrollo
 
-**Pendiente:** realizar estas pruebas y reemplazar los resultados por lo
-realmente observado. No se consideran aprobadas por estar incluidas en la tabla.
+**Pruebas realizadas:** se comprobaron manualmente las principales funciones de ChemLab. Los resultados obtenidos se detallan en la siguiente tabla.
 
 | Acción | Resultado esperado | Resultado obtenido |
 | --- | --- | --- |
-| Crear un registro válido. | Aparece en el listado con identificador único. | Pendiente: alta sin implementar. |
-| Incumplir la primera validación. | Informar el motivo y permitir corregir. | Pendiente: validación sin implementar. |
-| Incumplir la segunda validación. | Informar el motivo y permitir corregir. | Pendiente: validación sin implementar. |
-| Incumplir la regla propia del problema. | Rechazar la operación y explicar el motivo. | Pendiente: regla sin implementar. |
-| Modificar un registro seleccionado. | Actualizarlo conservando su identificador, sin duplicarlo. | Pendiente: modificación sin implementar. |
-| Cancelar una eliminación y confirmar otra con un registro de prueba. | Conservar el primero y eliminar solo el confirmado. | Pendiente: eliminación sin implementar. |
-| Aplicar una búsqueda o filtro. | Mostrar únicamente los registros que cumplen el criterio. | Comprobado: búsqueda por nombre y filtrado por categoría funcionando correctamente. |
+| Crear un registro válido. | Aparece en el listado con identificador único. | Comprobado: se registró correctamente el vaso de precipitados con identificador 4. |
+| Registrar un material con identificador repetido. | Rechazar el registro e informar el error. | Comprobado: ChemLab muestra "Ya existe un material con ese identificador" y no duplica el registro. |
+| Registrar un material sin nombre. | Rechazar el registro e informar el error. | Comprobado: ChemLab muestra "El nombre es obligatorio" y no permite registrar el material. |
+| Registrar un material con cantidad cero y estado activo. | Rechazar la operación e informar el motivo. | Comprobado: ChemLab rechaza un material con cantidad cero si está activo y permite registrarlo si está inactivo. |
+| Modificar un registro seleccionado. | Actualizarlo conservando su identificador, sin duplicarlo. | Comprobado: se modificaron las observaciones del vaso de precipitados, conservando su identificador 4 y los demás datos. |
+| Cancelar y confirmar la eliminación de un material. | Conservar el registro si se cancela y eliminarlo si se confirma. | Comprobado: se eliminó el termómetro de laboratorio y se conservó el vaso de precipitados al cancelar su eliminación. |
+| Buscar materiales y filtrar por categoría. | Mostrar únicamente los registros que cumplen el criterio. | Comprobado: funcionan las búsquedas por identificador exacto y por nombre, así como el filtrado por categoría mediante JList. |
 | Limpiar el formulario. | Dejarlo preparado para una nueva operación. | Comprobado: limpia los campos y recupera el listado completo. |
-| Crear y modificar datos, guardar, cerrar y volver a abrir. | Recuperar los cambios desde el JSON. | Pendiente de comprobar: verificar que los cambios guardados se recuperan al volver a abrir la aplicación. |
-| Iniciar sin JSON y con JSON inválido, usando copias de prueba. | Mantener el manejo de errores de la base. | Pendiente: volver a comprobar tras nuestros cambios. |
+| Crear y modificar datos, guardar, cerrar y volver a abrir. | Recuperar los cambios desde el JSON. | Comprobado: se registró y modificó un material, se guardaron los cambios y se recuperaron correctamente al reiniciar ChemLab. |
+| Iniciar sin JSON y con JSON inválido. | Manejar correctamente la ausencia de datos y los errores de lectura. | Comprobado: sin JSON, ChemLab inicia con la tabla vacía; con JSON inválido, muestra un mensaje de error. Al restaurar el archivo original, recupera los cuatro materiales. |
 
-Las limitaciones actuales son las funciones pendientes descritas en este
-documento. **Pendiente:** actualizar esta sección con las limitaciones reales
-de nuestra entrega.
+Las principales funciones de ChemLab fueron implementadas y comprobadas mediante pruebas manuales. Queda pendiente la revisión final de la documentación y la preparación del video explicativo.
 
 ## Procedencia del código y recursos utilizados
 
-- **Base docente:** estructura MVC con fachada, modelo genérico, ventana inicial,
-  avisos de funcionalidad pendiente, carga de ejemplo, infraestructura JSON y
-  configuración Maven con Wrapper.
-- **Trabajo de nuestro equipo:** pendiente de implementar y detallar,
-  identificando qué agregamos y qué modificamos.
+- **Base docente:** prototipo inicial en Java con arquitectura MVC, fachada, modelo de registros, interfaz Swing, carga de ejemplos, persistencia JSON y configuración Maven Wrapper. El prototipo incluía funcionalidades pendientes que posteriormente desarrollamos.
+- **Trabajo de nuestro equipo:** incorporación de JSpinner para gestionar cantidades, JList para filtrar materiales por categoría, mejoras en la interfaz gráfica y corrección de la búsqueda por identificador y nombre.
 - **Bibliotecas:** Gson 2.13.2 para leer y escribir JSON; Swing, incluido en Java,
   para la interfaz.
-- **Tutoriales, documentación y herramientas de IA utilizados por el equipo:**
-  pendiente de declarar. Indicar los recursos, su uso concreto y las partes
-  correspondientes, o aclarar si no se utilizaron.
+- **Herramientas de IA:** se utilizó ChatGPT como apoyo para revisar código Java, resolver errores, mejorar la interfaz gráfica y organizar la documentación. Las funcionalidades fueron comprobadas manualmente.
 
 ## Aportes de cada integrante
 
 | Integrante | Aportes realizados |
 | --- | --- |
 | Pendiente: primer integrante. | Pendiente de registrar aportes concretos. |
-| Jorge Álvarez | Incorporación de JSpinner para gestionar cantidades, JList para filtrar materiales por categoría y mejoras en la interfaz gráfica. |
+| Jorge Álvarez | Incorporación de JSpinner para gestionar cantidades, JList para filtrar materiales por categoría, mejoras de la interfaz gráfica y corrección de la búsqueda por identificador y nombre.|
 
 Agregar una tercera fila solamente si corresponde. Todos los integrantes deben
 conocer la solución completa y participar en el video.
