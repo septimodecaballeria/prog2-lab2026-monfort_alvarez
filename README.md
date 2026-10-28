@@ -294,6 +294,7 @@ Las principales funciones de ChemLab fueron implementadas y comprobadas mediante
 | Prueba de filtro por categoría |  Correcto
 | Prueba de funcionalidad del botón "Mostrar todos" |  Correcto
 | Prueba de selector numérico |  Correcto||
+| Prueba de persistencia |  Correcto||
 | Jorge Álvarez | Incorporación de JSpinner para gestionar cantidades, JList para filtrar materiales por categoría, mejoras de la interfaz gráfica y corrección de la búsqueda por identificador y nombre.|
 
 ## Video explicativo
