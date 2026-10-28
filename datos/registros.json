@@ -22,5 +22,13 @@
     "cantidad": 0,
     "activo": false,
     "observaciones": "Sin unidades disponibles"
+  },
+  {
+    "identificador": 4,
+    "nombre": "Vaso de precipitados 250 mL",
+    "categoria": "Material de vidrio",
+    "cantidad": 10,
+    "activo": true,
+    "observaciones": "Vidrio borosilicato. Revisar antes de utilizar."
   }
 ]
