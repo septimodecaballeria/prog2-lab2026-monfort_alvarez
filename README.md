@@ -278,7 +278,22 @@ Las principales funciones de ChemLab fueron implementadas y comprobadas mediante
 
 | Integrante | Aportes realizados |
 | --- | --- |
-| Nicolás Monfort | Adaptación de la persistencia JSON y puesta en funcionamiento de los botones de la aplicación.|
+| Nicolás Monfort || Nicolás Monfort | Adaptación del modelo de registros para gestionar materiales de laboratorio mediante seis atributos y reglas de validación; implementación de las operaciones de registro, modificación, eliminación y búsqueda mediante la fachada y el controlador; integración de la persistencia JSON y manejo de errores de carga y guardado; desarrollo de la interfaz Swing y sus validaciones; pruebas funcionales y de persistencia.
+Comprobación de las siguientes funciones:
+Registrar un material	Correcto
+Modificar un material sin cambiar su identificador	Correcto
+Cancelar una eliminación	Correcto
+Confirmar una eliminación	Correcto
+Guardar los datos	Correcto
+Recuperar cambios después de reiniciar	Correcto
+Prueba de validación de identificador duplicado en ChemLab: Correcto
+Prueba de validación de nombre obligatorio en ChemLab: Correcto
+Prueba de regla de dominio cantidad cero y estado activo en ChemLab: Correcto
+Prueba de búsqueda por nombre: Correcto
+Prueba de búsqueda por identificador: Correcto
+Prueba de filtro por categoría: Correcto
+Prueba de funcionalidad del botón "Mostrar todos": Correcto
+Prueba de selector numérico: Correcto||
 | Jorge Álvarez | Incorporación de JSpinner para gestionar cantidades, JList para filtrar materiales por categoría, mejoras de la interfaz gráfica y corrección de la búsqueda por identificador y nombre.|
 
 ## Video explicativo
