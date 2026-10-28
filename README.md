@@ -278,7 +278,7 @@ Las principales funciones de ChemLab fueron implementadas y comprobadas mediante
 
 | Integrante | Aportes realizados |
 | --- | --- |
-| Nicolás Monfort || Nicolás Monfort | Adaptación del modelo de registros para gestionar materiales de laboratorio mediante seis atributos y reglas de validación; implementación de las operaciones de registro, modificación, eliminación y búsqueda mediante la fachada y el controlador; integración de la persistencia JSON y manejo de errores de carga y guardado; desarrollo de la interfaz Swing y sus validaciones; pruebas funcionales y de persistencia.
+| Nicolás Monfort | Adaptación del modelo de registros para gestionar materiales de laboratorio mediante seis atributos y reglas de validación; implementación de las operaciones de registro, modificación, eliminación y búsqueda mediante la fachada y el controlador; integración de la persistencia JSON y manejo de errores de carga y guardado; desarrollo de la interfaz Swing y sus validaciones; pruebas funcionales y de persistencia.|
 Comprobación de las siguientes funciones:
 Registrar un material	Correcto
 Modificar un material sin cambiar su identificador	Correcto
